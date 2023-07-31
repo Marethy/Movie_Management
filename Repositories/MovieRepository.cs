@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SQLitePCL;
-using System;
-using WebApplication1.Data;
+﻿using WebApplication1.Data;
 using WebApplication1.Models.Entities;
+using WebApplication1.Repositories.Interface;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace WebApplication1.Repository
+namespace WebApplication1.Repositories
 {
     public class MovieRepository : IMovieRepository
     {
@@ -15,38 +16,32 @@ namespace WebApplication1.Repository
             _context = context;
         }
 
-
-        public async Task<IEnumerable<Movie>> GetAllAsync()
+        public async Task<IEnumerable<Movie>> GetAllMoviesAsync()
         {
-            return await _context.Movies
-            .Include(m => m.MovieGenres)
-            .ThenInclude(mg => mg.Genre)
-            .ToListAsync();
+            return await _context.Movies.ToListAsync();
         }
 
-        public async Task<Movie?> GetByIdAsync(int id)
+        public async Task<Movie?> GetMovieByIdAsync(int movieId)
+
         {
-            return await _context.Movies
-                .Include(m => m.MovieGenres)
-                .ThenInclude(mg => mg.Genre)
-                .FirstOrDefaultAsync(m => m.MovieId == id);
+            return await _context.Movies.FirstOrDefaultAsync(m => m.MovieId == movieId);
         }
 
-        public async Task AddAsync(Movie movie)
+        public async Task AddMovieAsync(Movie movie)
         {
-            await _context.Movies.AddAsync(movie);
+            _context.Movies.Add(movie);
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(Movie movie)
+        public async Task UpdateMovieAsync(Movie movie)
         {
             _context.Movies.Update(movie);
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteMovieAsync(int movieId)
         {
-            var movie = await _context.Movies.FindAsync(id);
+            var movie = await GetMovieByIdAsync(movieId);
             if (movie != null)
             {
                 _context.Movies.Remove(movie);

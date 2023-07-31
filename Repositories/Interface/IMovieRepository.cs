@@ -1,10 +1,15 @@
 ﻿using WebApplication1.Models.Entities;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-public interface IMovieRepository
+namespace WebApplication1.Repositories.Interface
 {
-    Task<IEnumerable<Movie>> GetAllAsync();
-    Task<Movie?> GetByIdAsync(int id);
-    Task AddAsync(Movie movie);
-    Task UpdateAsync(Movie movie);
-    Task DeleteAsync(int id);
+    public interface IMovieRepository
+    {
+        Task<IEnumerable<Movie>> GetAllMoviesAsync();
+        Task<Movie?> GetMovieByIdAsync(int movieId);
+        Task AddMovieAsync(Movie movie);
+        Task UpdateMovieAsync(Movie movie);
+        Task DeleteMovieAsync(int movieId);
+    }
 }
