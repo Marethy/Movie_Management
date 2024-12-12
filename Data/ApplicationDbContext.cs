@@ -75,7 +75,21 @@ namespace WebApplication1.Entities
                 .WithMany(p => p.OrderProducts)
                 .HasForeignKey(op => op.ProductID);
         }
-        public DbSet<WebApplication1.Entities.Movie> Movie { get; set; } = default!;
-      
+        public DbSet<WebApplication1.Entities.Movie> Movies { get; set; } = default!;
+        public DbSet<WebApplication1.Entities.Genre> Genres { get; set; } = default!;
+        public DbSet<WebApplication1.Entities.MovieGenre> MovieGenres { get; set; } = default!;
+        public DbSet<WebApplication1.Entities.Order> Orders { get; set; } = default!;
+        public DbSet<WebApplication1.Entities.OrderProduct> OrderProducts { get; set; } = default!;
+        public DbSet<WebApplication1.Entities.Product> Products { get; set; } = default!;
+        public DbSet<WebApplication1.Entities.Room> Rooms { get; set; } = default!;
+        public DbSet<WebApplication1.Entities.Seat> Seats { get; set; } = default!;
+        public DbSet<WebApplication1.Entities.ShowTime> ShowTimes { get; set; } = default!;
+
+        public DbSet<WebApplication1.Entities.Ticket> Tickets  { get; set; } = default!;
+
+        public DbSet<WebApplication1.Entities.User> Users { get; set; } = default!;
+
+
+
     }
 }

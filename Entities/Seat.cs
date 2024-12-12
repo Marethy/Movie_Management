@@ -1,4 +1,4 @@
-﻿using WebApplication1.Enums;
+﻿using WebApplication1.Utils.Enums;
 
 namespace WebApplication1.Entities
 {

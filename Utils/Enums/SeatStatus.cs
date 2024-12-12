@@ -1,4 +1,4 @@
-﻿namespace WebApplication1.Enums
+﻿namespace WebApplication1.Utils.Enums
 {
     public enum SeatStatus
     {
