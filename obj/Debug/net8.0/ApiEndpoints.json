@@ -1,7 +1,7 @@
 [
   {
     "ContainingType": "WebApplication1.Controllers.MoviesController",
-    "Method": "GetMovie",
+    "Method": "GetMovies",
     "RelativePath": "api/Movies",
     "HttpMethod": "GET",
     "IsController": true,
@@ -9,7 +9,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[WebApplication1.Entities.Movie, WebApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[WebApplication1.Models.Entities.Movie, WebApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -29,13 +29,13 @@
     "Parameters": [
       {
         "Name": "movie",
-        "Type": "WebApplication1.Entities.Movie",
+        "Type": "WebApplication1.Models.Entities.Movie",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "WebApplication1.Entities.Movie",
+        "Type": "WebApplication1.Models.Entities.Movie",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -61,7 +61,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "WebApplication1.Entities.Movie",
+        "Type": "WebApplication1.Models.Entities.Movie",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -86,7 +86,7 @@
       },
       {
         "Name": "movie",
-        "Type": "WebApplication1.Entities.Movie",
+        "Type": "WebApplication1.Models.Entities.Movie",
         "IsRequired": true
       }
     ],
@@ -96,6 +96,115 @@
     "ContainingType": "WebApplication1.Controllers.MoviesController",
     "Method": "DeleteMovie",
     "RelativePath": "api/Movies/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApplication1.Controllers.OrdersController",
+    "Method": "GetOrders",
+    "RelativePath": "api/Orders",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[WebApplication1.Models.Entities.Order, WebApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApplication1.Controllers.OrdersController",
+    "Method": "PostOrder",
+    "RelativePath": "api/Orders",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "order",
+        "Type": "WebApplication1.Models.Entities.Order",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WebApplication1.Models.Entities.Order",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApplication1.Controllers.OrdersController",
+    "Method": "GetOrder",
+    "RelativePath": "api/Orders/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "WebApplication1.Models.Entities.Order",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApplication1.Controllers.OrdersController",
+    "Method": "PutOrder",
+    "RelativePath": "api/Orders/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "order",
+        "Type": "WebApplication1.Models.Entities.Order",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApplication1.Controllers.OrdersController",
+    "Method": "DeleteOrder",
+    "RelativePath": "api/Orders/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,

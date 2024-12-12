@@ -12,48 +12,47 @@ namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MoviesController : ControllerBase
+    public class OrdersController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public MoviesController(ApplicationDbContext context)
+        public OrdersController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Movies
+        // GET: api/Orders
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Movie>>> GetMovies()
+        public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
         {
-            var movies =await _context.Movies.ToListAsync();
-            return Ok();
+            return await _context.Orders.ToListAsync();
         }
 
-        // GET: api/Movies/5
+        // GET: api/Orders/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Movie>> GetMovie(int id)
+        public async Task<ActionResult<Order>> GetOrder(int id)
         {
-            var movie = await _context.Movies.FindAsync(id);
+            var order = await _context.Orders.FindAsync(id);
 
-            if (movie == null)
+            if (order == null)
             {
                 return NotFound();
             }
 
-            return movie;
+            return order;
         }
 
-        // PUT: api/Movies/5
+        // PUT: api/Orders/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutMovie(int id, Movie movie)
+        public async Task<IActionResult> PutOrder(int id, Order order)
         {
-            if (id != movie.MovieId)
+            if (id != order.OrderID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(movie).State = EntityState.Modified;
+            _context.Entry(order).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +60,7 @@ namespace WebApplication1.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MovieExists(id))
+                if (!OrderExists(id))
                 {
                     return NotFound();
                 }
@@ -74,36 +73,36 @@ namespace WebApplication1.Controllers
             return NoContent();
         }
 
-        // POST: api/Movies
+        // POST: api/Orders
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Movie>> PostMovie(Movie movie)
+        public async Task<ActionResult<Order>> PostOrder(Order order)
         {
-            _context.Movies.Add(movie);
+            _context.Orders.Add(order);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetMovie", new { id = movie.MovieId }, movie);
+            return CreatedAtAction("GetOrder", new { id = order.OrderID }, order);
         }
 
-        // DELETE: api/Movies/5
+        // DELETE: api/Orders/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMovie(int id)
+        public async Task<IActionResult> DeleteOrder(int id)
         {
-            var movie = await _context.Movies.FindAsync(id);
-            if (movie == null)
+            var order = await _context.Orders.FindAsync(id);
+            if (order == null)
             {
                 return NotFound();
             }
 
-            _context.Movies.Remove(movie);
+            _context.Orders.Remove(order);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool MovieExists(int id)
+        private bool OrderExists(int id)
         {
-            return _context.Movies.Any(e => e.MovieId == id);
+            return _context.Orders.Any(e => e.OrderID == id);
         }
     }
 }

@@ -5,9 +5,11 @@ using MailKit.Net.Smtp;
 using MimeKit;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using WebApplication1.Data;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 // Add services to the container.
 builder.Services.AddControllers();
 
