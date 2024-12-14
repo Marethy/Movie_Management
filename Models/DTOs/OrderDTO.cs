@@ -10,12 +10,8 @@ namespace WebApplication1.Models.DTOs
         public required  string UserId { get; set; }
         public decimal TotalAmount { get; set; }
 
-
-
-        // Thông tin về sản phẩm trong đơn hàng
         public List<OrderProductDTO>? OrderProducts { get; set; }
 
-        // Thông tin vé (Tickets)
         public required List<TicketDTO> Tickets { get; set; }
     }
 }

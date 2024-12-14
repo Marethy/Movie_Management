@@ -5,7 +5,7 @@ namespace WebApplication1.Models.Entities
 {
     public class Movie
     {
-        public int MovieId { get; set; }
+        public required int MovieId { get; set; }
 
         [StringLength(500)]
         public required string Title { get; set; } = string.Empty;

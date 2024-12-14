@@ -8,7 +8,6 @@ C:\Users\PC\source\repos\WebApplication1\bin\Debug\net8.0\WebApplication1.runtim
 C:\Users\PC\source\repos\WebApplication1\bin\Debug\net8.0\WebApplication1.dll
 C:\Users\PC\source\repos\WebApplication1\bin\Debug\net8.0\WebApplication1.pdb
 C:\Users\PC\source\repos\WebApplication1\bin\Debug\net8.0\AutoMapper.dll
-C:\Users\PC\source\repos\WebApplication1\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\PC\source\repos\WebApplication1\bin\Debug\net8.0\Azure.Core.dll
 C:\Users\PC\source\repos\WebApplication1\bin\Debug\net8.0\Azure.Identity.dll
 C:\Users\PC\source\repos\WebApplication1\bin\Debug\net8.0\BouncyCastle.Cryptography.dll

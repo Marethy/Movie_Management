@@ -79,12 +79,12 @@ namespace WebApplication1.Controllers
         [HttpPost]
         // POST: api/Movies
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Movie>> PostMovie(Movie movie, [FromBody] List<string> genreNames)
-        {
-            return NoContent();
+        //[HttpPost]
+        //public async Task<ActionResult<Movie>> PostMovie(Movie movie, [FromBody] List<string> genreNames)
+        //{
+        //    return NoContent();
 
-        }
+        //}
 
         // DELETE: api/Movies/5
         [HttpDelete("{id}")]

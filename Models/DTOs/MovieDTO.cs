@@ -1,15 +1,31 @@
-﻿namespace WebApplication1.Models.DTOs
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace WebApplication1.Models.DTOs
 {
     public class MovieDTO
     {
         public int MovieId { get; set; }
-        public string Title { get; set; } = string.Empty;
-        public TimeSpan Duration { get; set; }
-        public DateTime ReleaseDate { get; set; }
-        public string Description { get; set; } = string.Empty;
-        public string Director { get; set; } = string.Empty;
-        public string Actors { get; set; } = string.Empty;
-        public string Country { get; set; } = string.Empty;
-        public string Image { get; set; } = string.Empty;
+        [StringLength(500)]
+        public required string Title { get; set; } = string.Empty;
+
+        public required TimeSpan Duration { get; set; }
+
+        public required DateTime ReleaseDate { get; set; }
+
+
+        public required string Description { get; set; }
+
+        [StringLength(50)]
+        public required string Director { get; set; }
+
+        public required string Actors { get; set; }
+
+        [StringLength(50)]
+
+        public required string Country { get; set; }
+
+        [StringLength(500)]
+        public required string Image { get; set; }
+
     }
 }
