@@ -12,47 +12,47 @@ namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ShowTimesController : ControllerBase
+    public class TheatersController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public ShowTimesController(ApplicationDbContext context)
+        public TheatersController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/ShowTimes
+        // GET: api/Theaters
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ShowTime>>> GetShowTimes()
+        public async Task<ActionResult<IEnumerable<Theater>>> GetTheaters()
         {
-            return await _context.ShowTimes.ToListAsync();
+            return await _context.Theaters.ToListAsync();
         }
 
-        // GET: api/ShowTimes/5
+        // GET: api/Theaters/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ShowTime>> GetShowTime(int id)
+        public async Task<ActionResult<Theater>> GetTheater(int id)
         {
-            var showTime = await _context.ShowTimes.FindAsync(id);
+            var theater = await _context.Theaters.FindAsync(id);
 
-            if (showTime == null)
+            if (theater == null)
             {
                 return NotFound();
             }
 
-            return showTime;
+            return theater;
         }
 
-        // PUT: api/ShowTimes/5
+        // PUT: api/Theaters/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutShowTime(int id, ShowTime showTime)
+        public async Task<IActionResult> PutTheater(int id, Theater theater)
         {
-            if (id != showTime.ShowTimeID)
-            {
+            if (id != theater.TheaterID)
+            {   
                 return BadRequest();
             }
 
-            _context.Entry(showTime).State = EntityState.Modified;
+            _context.Entry(theater).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace WebApplication1.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ShowTimeExists(id))
+                if (!TheaterExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace WebApplication1.Controllers
             return NoContent();
         }
 
-        // POST: api/ShowTimes
+        // POST: api/Theaters
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<ShowTime>> PostShowTime(ShowTime showTime)
+        public async Task<ActionResult<Theater>> PostTheater(Theater theater)
         {
-            _context.ShowTimes.Add(showTime);
+            _context.Theaters.Add(theater);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetShowTime", new { id = showTime.ShowTimeID }, showTime);
+            return CreatedAtAction("GetTheater", new { id = theater.TheaterID }, theater);
         }
 
-        // DELETE: api/ShowTimes/5
+        // DELETE: api/Theaters/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteShowTime(int id)
+        public async Task<IActionResult> DeleteTheater(int id)
         {
-            var showTime = await _context.ShowTimes.FindAsync(id);
-            if (showTime == null)
+            var theater = await _context.Theaters.FindAsync(id);
+            if (theater == null)
             {
                 return NotFound();
             }
 
-            _context.ShowTimes.Remove(showTime);
+            _context.Theaters.Remove(theater);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool ShowTimeExists(int id)
+        private bool TheaterExists(int id)
         {
-            return _context.ShowTimes.Any(e => e.ShowTimeID == id);
+            return _context.Theaters.Any(e => e.TheaterID == id);
         }
     }
 }

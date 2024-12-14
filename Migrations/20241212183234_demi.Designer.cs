@@ -7,14 +7,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplication1.Data;
 
-
 #nullable disable
 
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241211205457_test")]
-    partial class test
+    [Migration("20241212183234_demi")]
+    partial class demi
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -90,6 +89,11 @@ namespace WebApplication1.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("nvarchar(13)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -141,6 +145,10 @@ namespace WebApplication1.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasDiscriminator().HasValue("IdentityUser");
+
+                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -224,7 +232,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.Genre", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.Genre", b =>
                 {
                     b.Property<int>("GenreId")
                         .ValueGeneratedOnAdd()
@@ -238,16 +246,16 @@ namespace WebApplication1.Migrations
 
                     b.HasKey("GenreId");
 
-                    b.ToTable("Genre");
+                    b.ToTable("Genres");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.Movie", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.Movie", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("MovieId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MovieId"));
 
                     b.Property<string>("Actors")
                         .IsRequired()
@@ -283,12 +291,12 @@ namespace WebApplication1.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
-                    b.HasKey("Id");
+                    b.HasKey("MovieId");
 
-                    b.ToTable("Movie");
+                    b.ToTable("Movies");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.MovieGenre", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.MovieGenre", b =>
                 {
                     b.Property<int>("MovieID")
                         .HasColumnType("int");
@@ -300,25 +308,217 @@ namespace WebApplication1.Migrations
 
                     b.HasIndex("GenreID");
 
-                    b.ToTable("MovieGenre");
+                    b.ToTable("MovieGenres");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.ShowTime", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.Order", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("OrderID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderID"));
 
-                    b.Property<int?>("MovieId")
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("TotalAmount")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("OrderID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Entities.OrderProduct", b =>
+                {
+                    b.Property<int>("OrderID")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<int>("ProductID")
+                        .HasColumnType("int");
 
-                    b.HasIndex("MovieId");
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
 
-                    b.ToTable("ShowTime");
+                    b.HasKey("OrderID", "ProductID");
+
+                    b.HasIndex("ProductID");
+
+                    b.ToTable("OrderProducts");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Entities.Product", b =>
+                {
+                    b.Property<int>("ProductID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductID"));
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ProductID");
+
+                    b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Entities.Room", b =>
+                {
+                    b.Property<int>("RoomID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoomID"));
+
+                    b.Property<int>("Capacity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RoomName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("TheaterID")
+                        .HasColumnType("int");
+
+                    b.HasKey("RoomID");
+
+                    b.HasIndex("TheaterID", "RoomName")
+                        .IsUnique();
+
+                    b.ToTable("Rooms");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Entities.Seat", b =>
+                {
+                    b.Property<int>("SeatID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SeatID"));
+
+                    b.Property<int>("RoomID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SeatNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("SeatID");
+
+                    b.HasIndex("RoomID");
+
+                    b.ToTable("Seats");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Entities.ShowTime", b =>
+                {
+                    b.Property<int>("ShowTimeID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ShowTimeID"));
+
+                    b.Property<int>("MovieID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoomID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("Time")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ShowTimeID");
+
+                    b.HasIndex("MovieID");
+
+                    b.HasIndex("RoomID");
+
+                    b.ToTable("ShowTimes");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Entities.Theater", b =>
+                {
+                    b.Property<int>("TheaterID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TheaterID"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TheaterID");
+
+                    b.ToTable("Theaters");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Entities.Ticket", b =>
+                {
+                    b.Property<int>("TicketID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TicketID"));
+
+                    b.Property<int>("OrderID")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Price")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("SeatID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ShowTimeID")
+                        .HasColumnType("int");
+
+                    b.HasKey("TicketID");
+
+                    b.HasIndex("OrderID");
+
+                    b.HasIndex("SeatID");
+
+                    b.HasIndex("ShowTimeID");
+
+                    b.ToTable("Tickets");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Entities.User", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.HasDiscriminator().HasValue("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -372,15 +572,15 @@ namespace WebApplication1.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.MovieGenre", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.MovieGenre", b =>
                 {
-                    b.HasOne("WebApplication1.Entities.Genre", "Genre")
+                    b.HasOne("WebApplication1.Models.Entities.Genre", "Genre")
                         .WithMany("MovieGenres")
                         .HasForeignKey("GenreID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebApplication1.Entities.Movie", "Movie")
+                    b.HasOne("WebApplication1.Models.Entities.Movie", "Movie")
                         .WithMany("MovieGenres")
                         .HasForeignKey("MovieID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -391,23 +591,148 @@ namespace WebApplication1.Migrations
                     b.Navigation("Movie");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.ShowTime", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.Order", b =>
                 {
-                    b.HasOne("WebApplication1.Entities.Movie", null)
-                        .WithMany("ShowTimes")
-                        .HasForeignKey("MovieId");
+                    b.HasOne("WebApplication1.Models.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.Genre", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.OrderProduct", b =>
+                {
+                    b.HasOne("WebApplication1.Models.Entities.Order", "Order")
+                        .WithMany("OrderProducts")
+                        .HasForeignKey("OrderID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebApplication1.Models.Entities.Product", "Product")
+                        .WithMany("OrderProducts")
+                        .HasForeignKey("ProductID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Entities.Room", b =>
+                {
+                    b.HasOne("WebApplication1.Models.Entities.Theater", "Theater")
+                        .WithMany("Rooms")
+                        .HasForeignKey("TheaterID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Theater");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Entities.Seat", b =>
+                {
+                    b.HasOne("WebApplication1.Models.Entities.Room", "Room")
+                        .WithMany("Seats")
+                        .HasForeignKey("RoomID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Room");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Entities.ShowTime", b =>
+                {
+                    b.HasOne("WebApplication1.Models.Entities.Movie", "Movie")
+                        .WithMany("ShowTimes")
+                        .HasForeignKey("MovieID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebApplication1.Models.Entities.Room", "Room")
+                        .WithMany("ShowTimes")
+                        .HasForeignKey("RoomID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Movie");
+
+                    b.Navigation("Room");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Entities.Ticket", b =>
+                {
+                    b.HasOne("WebApplication1.Models.Entities.Order", "Order")
+                        .WithMany("Tickets")
+                        .HasForeignKey("OrderID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("WebApplication1.Models.Entities.Seat", "Seat")
+                        .WithMany("Tickets")
+                        .HasForeignKey("SeatID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("WebApplication1.Models.Entities.ShowTime", "ShowTime")
+                        .WithMany("Tickets")
+                        .HasForeignKey("ShowTimeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Seat");
+
+                    b.Navigation("ShowTime");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Entities.Genre", b =>
                 {
                     b.Navigation("MovieGenres");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.Movie", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.Movie", b =>
                 {
                     b.Navigation("MovieGenres");
 
                     b.Navigation("ShowTimes");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Entities.Order", b =>
+                {
+                    b.Navigation("OrderProducts");
+
+                    b.Navigation("Tickets");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Entities.Product", b =>
+                {
+                    b.Navigation("OrderProducts");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Entities.Room", b =>
+                {
+                    b.Navigation("Seats");
+
+                    b.Navigation("ShowTimes");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Entities.Seat", b =>
+                {
+                    b.Navigation("Tickets");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Entities.ShowTime", b =>
+                {
+                    b.Navigation("Tickets");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Entities.Theater", b =>
+                {
+                    b.Navigation("Rooms");
                 });
 #pragma warning restore 612, 618
         }

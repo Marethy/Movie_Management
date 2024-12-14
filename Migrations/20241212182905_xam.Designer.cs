@@ -7,14 +7,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplication1.Data;
 
-
 #nullable disable
 
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241211212708_123ejkdadk")]
-    partial class _123ejkdadk
+    [Migration("20241212182905_xam")]
+    partial class xam
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -233,7 +232,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.Genre", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.Genre", b =>
                 {
                     b.Property<int>("GenreId")
                         .ValueGeneratedOnAdd()
@@ -247,10 +246,10 @@ namespace WebApplication1.Migrations
 
                     b.HasKey("GenreId");
 
-                    b.ToTable("Genre");
+                    b.ToTable("Genres");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.Movie", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.Movie", b =>
                 {
                     b.Property<int>("MovieId")
                         .ValueGeneratedOnAdd()
@@ -294,10 +293,10 @@ namespace WebApplication1.Migrations
 
                     b.HasKey("MovieId");
 
-                    b.ToTable("Movie");
+                    b.ToTable("Movies");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.MovieGenre", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.MovieGenre", b =>
                 {
                     b.Property<int>("MovieID")
                         .HasColumnType("int");
@@ -309,10 +308,10 @@ namespace WebApplication1.Migrations
 
                     b.HasIndex("GenreID");
 
-                    b.ToTable("MovieGenre");
+                    b.ToTable("MovieGenres");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.Order", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.Order", b =>
                 {
                     b.Property<int>("OrderID")
                         .ValueGeneratedOnAdd()
@@ -324,10 +323,8 @@ namespace WebApplication1.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("TotalAmount")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("UserID")
-                        .HasColumnType("int");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -337,10 +334,10 @@ namespace WebApplication1.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Order");
+                    b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.OrderProduct", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.OrderProduct", b =>
                 {
                     b.Property<int>("OrderID")
                         .HasColumnType("int");
@@ -355,10 +352,10 @@ namespace WebApplication1.Migrations
 
                     b.HasIndex("ProductID");
 
-                    b.ToTable("OrderProduct");
+                    b.ToTable("OrderProducts");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.Product", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.Product", b =>
                 {
                     b.Property<int>("ProductID")
                         .ValueGeneratedOnAdd()
@@ -375,6 +372,7 @@ namespace WebApplication1.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ProductName")
@@ -383,10 +381,10 @@ namespace WebApplication1.Migrations
 
                     b.HasKey("ProductID");
 
-                    b.ToTable("Product");
+                    b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.Room", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.Room", b =>
                 {
                     b.Property<int>("RoomID")
                         .ValueGeneratedOnAdd()
@@ -399,14 +397,20 @@ namespace WebApplication1.Migrations
 
                     b.Property<string>("RoomName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("TheaterID")
+                        .HasColumnType("int");
 
                     b.HasKey("RoomID");
 
-                    b.ToTable("Room");
+                    b.HasIndex("TheaterID", "RoomName")
+                        .IsUnique();
+
+                    b.ToTable("Rooms");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.Seat", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.Seat", b =>
                 {
                     b.Property<int>("SeatID")
                         .ValueGeneratedOnAdd()
@@ -428,10 +432,10 @@ namespace WebApplication1.Migrations
 
                     b.HasIndex("RoomID");
 
-                    b.ToTable("Seat");
+                    b.ToTable("Seats");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.ShowTime", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.ShowTime", b =>
                 {
                     b.Property<int>("ShowTimeId")
                         .ValueGeneratedOnAdd()
@@ -454,10 +458,31 @@ namespace WebApplication1.Migrations
 
                     b.HasIndex("RoomID");
 
-                    b.ToTable("ShowTime");
+                    b.ToTable("ShowTimes");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.Ticket", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.Theater", b =>
+                {
+                    b.Property<int>("TheaterID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TheaterID"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TheaterID");
+
+                    b.ToTable("Theaters");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Entities.Ticket", b =>
                 {
                     b.Property<int>("TicketID")
                         .ValueGeneratedOnAdd()
@@ -469,6 +494,7 @@ namespace WebApplication1.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Price")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("SeatID")
@@ -485,10 +511,10 @@ namespace WebApplication1.Migrations
 
                     b.HasIndex("ShowTimeID");
 
-                    b.ToTable("Ticket");
+                    b.ToTable("Tickets");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.User", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.User", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
@@ -546,15 +572,15 @@ namespace WebApplication1.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.MovieGenre", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.MovieGenre", b =>
                 {
-                    b.HasOne("WebApplication1.Entities.Genre", "Genre")
+                    b.HasOne("WebApplication1.Models.Entities.Genre", "Genre")
                         .WithMany("MovieGenres")
                         .HasForeignKey("GenreID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebApplication1.Entities.Movie", "Movie")
+                    b.HasOne("WebApplication1.Models.Entities.Movie", "Movie")
                         .WithMany("MovieGenres")
                         .HasForeignKey("MovieID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -565,9 +591,9 @@ namespace WebApplication1.Migrations
                     b.Navigation("Movie");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.Order", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.Order", b =>
                 {
-                    b.HasOne("WebApplication1.Entities.User", "User")
+                    b.HasOne("WebApplication1.Models.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -576,15 +602,15 @@ namespace WebApplication1.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.OrderProduct", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.OrderProduct", b =>
                 {
-                    b.HasOne("WebApplication1.Entities.Order", "Order")
+                    b.HasOne("WebApplication1.Models.Entities.Order", "Order")
                         .WithMany("OrderProducts")
                         .HasForeignKey("OrderID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebApplication1.Entities.Product", "Product")
+                    b.HasOne("WebApplication1.Models.Entities.Product", "Product")
                         .WithMany("OrderProducts")
                         .HasForeignKey("ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -595,9 +621,20 @@ namespace WebApplication1.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.Seat", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.Room", b =>
                 {
-                    b.HasOne("WebApplication1.Entities.Room", "Room")
+                    b.HasOne("WebApplication1.Models.Entities.Theater", "Theater")
+                        .WithMany("Rooms")
+                        .HasForeignKey("TheaterID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Theater");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Entities.Seat", b =>
+                {
+                    b.HasOne("WebApplication1.Models.Entities.Room", "Room")
                         .WithMany("Seats")
                         .HasForeignKey("RoomID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -606,15 +643,15 @@ namespace WebApplication1.Migrations
                     b.Navigation("Room");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.ShowTime", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.ShowTime", b =>
                 {
-                    b.HasOne("WebApplication1.Entities.Movie", "Movie")
+                    b.HasOne("WebApplication1.Models.Entities.Movie", "Movie")
                         .WithMany("ShowTimes")
                         .HasForeignKey("MovieID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebApplication1.Entities.Room", "Room")
+                    b.HasOne("WebApplication1.Models.Entities.Room", "Room")
                         .WithMany("ShowTimes")
                         .HasForeignKey("RoomID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -625,21 +662,21 @@ namespace WebApplication1.Migrations
                     b.Navigation("Room");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.Ticket", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.Ticket", b =>
                 {
-                    b.HasOne("WebApplication1.Entities.Order", "Order")
+                    b.HasOne("WebApplication1.Models.Entities.Order", "Order")
                         .WithMany("Tickets")
                         .HasForeignKey("OrderID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebApplication1.Entities.Seat", "Seat")
+                    b.HasOne("WebApplication1.Models.Entities.Seat", "Seat")
                         .WithMany("Tickets")
                         .HasForeignKey("SeatID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("WebApplication1.Entities.ShowTime", "ShowTime")
+                    b.HasOne("WebApplication1.Models.Entities.ShowTime", "ShowTime")
                         .WithMany("Tickets")
                         .HasForeignKey("ShowTimeID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -652,45 +689,50 @@ namespace WebApplication1.Migrations
                     b.Navigation("ShowTime");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.Genre", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.Genre", b =>
                 {
                     b.Navigation("MovieGenres");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.Movie", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.Movie", b =>
                 {
                     b.Navigation("MovieGenres");
 
                     b.Navigation("ShowTimes");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.Order", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.Order", b =>
                 {
                     b.Navigation("OrderProducts");
 
                     b.Navigation("Tickets");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.Product", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.Product", b =>
                 {
                     b.Navigation("OrderProducts");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.Room", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.Room", b =>
                 {
                     b.Navigation("Seats");
 
                     b.Navigation("ShowTimes");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.Seat", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.Seat", b =>
                 {
                     b.Navigation("Tickets");
                 });
 
-            modelBuilder.Entity("WebApplication1.Entities.ShowTime", b =>
+            modelBuilder.Entity("WebApplication1.Models.Entities.ShowTime", b =>
                 {
                     b.Navigation("Tickets");
+                });
+
+            modelBuilder.Entity("WebApplication1.Models.Entities.Theater", b =>
+                {
+                    b.Navigation("Rooms");
                 });
 #pragma warning restore 612, 618
         }

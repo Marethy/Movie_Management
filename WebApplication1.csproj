@@ -32,6 +32,7 @@
   <ItemGroup>
     <Folder Include="Data\Seeder\" />
     <Folder Include="Configurations\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>
