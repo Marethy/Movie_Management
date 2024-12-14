@@ -2,7 +2,7 @@
 
 namespace WebApplication1.Repositories.Interface
 {
-    public class IProductRepository 
+    public interface IProductRepository
     {
         Task<IEnumerable<Product>> GetAllProductsAsync();
         Task<Product?> GetProductByIdAsync(int ProductId);

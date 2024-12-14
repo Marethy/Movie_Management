@@ -19,30 +19,30 @@ namespace WebApplication1.Repositories
             return await _context.Products.ToListAsync();
         }
 
-        public async Task<Product?> GetProductByIdAsync(int ProductId)
+        public async Task<Product?> GetProductByIdAsync(int productId)
 
         {
-            return await _context.Products.FirstOrDefaultAsync(m => m.ProductID == ProductId);
+            return await _context.Products.FirstOrDefaultAsync(m => m.ProductID == productId);
         }
 
-        public async Task AddProductAsync(Product Product)
+        public async Task AddProductAsync(Product product)
         {
-            _context.Products.Add(Product);
+            _context.Products.Add(product);
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateProductAsync(Product Product)
+        public async Task UpdateProductAsync(Product product)
         {
-            _context.Products.Update(Product);
+            _context.Products.Update(product);
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteProductAsync(int ProductId)
+        public async Task DeleteProductAsync(int productId)
         {
-            var Product = await GetProductByIdAsync(ProductId);
-            if (Product != null)
+            var product = await GetProductByIdAsync(productId);
+            if (product != null)
             {
-                _context.Products.Remove(Product);
+                _context.Products.Remove(product);
                 await _context.SaveChangesAsync();
             }
         }

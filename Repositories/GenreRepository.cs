@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
 using WebApplication1.Models.Entities;
+using WebApplication1.Repositories.Interface;
 
 namespace WebApplication1.Repositories
 {
-    public class GenreRepository
+    public class GenreRepository:IGenreRepository
     {
         private readonly ApplicationDbContext _context;
 
@@ -18,30 +19,30 @@ namespace WebApplication1.Repositories
             return await _context.Genres.ToListAsync();
         }
 
-        public async Task<Genre?> GetGenreByIdAsync(int GenreId)
+        public async Task<Genre?> GetGenreByIdAsync(int genreId)
 
         {
-            return await _context.Genres.FirstOrDefaultAsync(m => m.GenreId == GenreId);
+            return await _context.Genres.FirstOrDefaultAsync(m => m.GenreId == genreId);
         }
 
-        public async Task AddGenreAsync(Genre Genre)
+        public async Task AddGenreAsync(Genre genre)
         {
-            _context.Genres.Add(Genre);
+            _context.Genres.Add(genre);
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateGenreAsync(Genre Genre)
+        public async Task UpdateGenreAsync(Genre genre)
         {
-            _context.Genres.Update(Genre);
+            _context.Genres.Update(genre);
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteGenreAsync(int GenreId)
+        public async Task DeleteGenreAsync(int genreId)
         {
-            var Genre = await GetGenreByIdAsync(GenreId);
-            if (Genre != null)
+            var genre = await GetGenreByIdAsync(genreId);
+            if (genre != null)
             {
-                _context.Genres.Remove(Genre);
+                _context.Genres.Remove(genre);
                 await _context.SaveChangesAsync();
             }
         }

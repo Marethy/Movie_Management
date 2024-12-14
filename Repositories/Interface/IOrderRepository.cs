@@ -1,6 +1,14 @@
-﻿namespace WebApplication1.Repositories.Interface
+﻿using WebApplication1.Models.Entities;
+
+namespace WebApplication1.Repositories.Interface
 {
-    public class IOrderRepository
+    public interface IOrderRepository
     {
+        Task<IEnumerable<Order>> GetAllOrdersAsync();
+        Task<Order?> GetOrderByIdAsync(int orderId);
+        Task AddOrderAsync(Order order);
+        Task UpdateOrderAsync(Order order);
+        Task DeleteOrderAsync(int orderId);
+
     }
 }
