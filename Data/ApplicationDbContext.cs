@@ -71,34 +71,34 @@ namespace WebApplication1.Data
                 .WithMany(r => r.Seats)
                 .HasForeignKey(s => s.RoomID);
 
-            // ShowTime - Ticket (One-to-Many) with Cascade Delete
+            // ShowTime - Ticket (One-to-Many) with Restrict Delete to avoid cascading conflict
             modelBuilder.Entity<Ticket>()
                 .HasOne(t => t.ShowTime)
                 .WithMany(st => st.Tickets)
                 .HasForeignKey(t => t.ShowTimeID)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.NoAction);  // Tránh cascade
 
-            // Seat - Ticket (One-to-Many)
+            // Seat - Ticket (One-to-Many) with Restrict Delete
             modelBuilder.Entity<Ticket>()
                 .HasOne(t => t.Seat)
                 .WithMany(s => s.Tickets)
                 .HasForeignKey(t => t.SeatID)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.NoAction);  // Tránh cascade
 
-            // Order - Ticket (One-to-Many)
+            // Order - Ticket (One-to-Many) with Cascade Delete (giữ cascade delete tại đây nếu cần thiết)
             modelBuilder.Entity<Ticket>()
                 .HasOne(t => t.Order)
                 .WithMany(o => o.Tickets)
                 .HasForeignKey(t => t.OrderID)
-                .OnDelete(DeleteBehavior.)
+                .OnDelete(DeleteBehavior.Cascade);  // Giữ Cascade ở đây nếu muốn xóa các ticket khi Order bị xóa
+
             // Order - OrderProduct (One-to-Many)
             modelBuilder.Entity<OrderProduct>()
                 .HasKey(op => new { op.OrderID, op.ProductID });
 
             modelBuilder.Entity<OrderProduct>()
                 .HasOne(op => op.Order)
-                .WithMany(o => o.OrderProducts)
-                .HasForeignKey(op => op.OrderID);
+                .WithMany(o => o.OrderProducts);
 
             modelBuilder.Entity<OrderProduct>()
                 .HasOne(op => op.Product)
@@ -115,16 +115,15 @@ namespace WebApplication1.Data
             modelBuilder.Entity<Order>()
                 .HasOne(o => o.User)
                 .WithMany()
-                .HasForeignKey(o => o.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey(o => o.UserId);
 
             // Order - Ticket (One-to-Many) with Cascade Delete
             modelBuilder.Entity<Order>()
                 .HasMany(o => o.Tickets)
                 .WithOne(t => t.Order)
-                .HasForeignKey(t => t.OrderID)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey(t => t.OrderID);
         }
+
 
         private void ConfigureIndexes(ModelBuilder modelBuilder)
         {

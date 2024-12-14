@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace WebApplication1.Migrations
 {
     /// <inheritdoc />
-    public partial class AddMigrationefds : Migration
+    public partial class again : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -227,7 +227,7 @@ namespace WebApplication1.Migrations
                     OrderID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     TotalAmount = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false)
                 },
                 constraints: table =>
@@ -237,7 +237,8 @@ namespace WebApplication1.Migrations
                         name: "FK_Orders_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -270,7 +271,7 @@ namespace WebApplication1.Migrations
                 {
                     RoomID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RoomName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RoomName = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Capacity = table.Column<int>(type: "int", nullable: false),
                     TheaterID = table.Column<int>(type: "int", nullable: false)
                 },
@@ -335,7 +336,7 @@ namespace WebApplication1.Migrations
                 name: "ShowTimes",
                 columns: table => new
                 {
-                    ShowTimeId = table.Column<int>(type: "int", nullable: false)
+                    ShowTimeID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     MovieID = table.Column<int>(type: "int", nullable: false),
                     RoomID = table.Column<int>(type: "int", nullable: false),
@@ -343,7 +344,7 @@ namespace WebApplication1.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ShowTimes", x => x.ShowTimeId);
+                    table.PrimaryKey("PK_ShowTimes", x => x.ShowTimeID);
                     table.ForeignKey(
                         name: "FK_ShowTimes_Movies_MovieID",
                         column: x => x.MovieID,
@@ -382,14 +383,12 @@ namespace WebApplication1.Migrations
                         name: "FK_Tickets_Seats_SeatID",
                         column: x => x.SeatID,
                         principalTable: "Seats",
-                        principalColumn: "SeatID",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "SeatID");
                     table.ForeignKey(
                         name: "FK_Tickets_ShowTimes_ShowTimeID",
                         column: x => x.ShowTimeID,
                         principalTable: "ShowTimes",
-                        principalColumn: "ShowTimeId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ShowTimeID");
                 });
 
             migrationBuilder.CreateIndex(
@@ -447,9 +446,10 @@ namespace WebApplication1.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Rooms_TheaterID",
+                name: "IX_Rooms_TheaterID_RoomName",
                 table: "Rooms",
-                column: "TheaterID");
+                columns: new[] { "TheaterID", "RoomName" },
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Seats_RoomID",

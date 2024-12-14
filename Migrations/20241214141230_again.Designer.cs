@@ -12,8 +12,8 @@ using WebApplication1.Data;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241212183234_demi")]
-    partial class demi
+    [Migration("20241214141230_again")]
+    partial class again
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -673,13 +673,13 @@ namespace WebApplication1.Migrations
                     b.HasOne("WebApplication1.Models.Entities.Seat", "Seat")
                         .WithMany("Tickets")
                         .HasForeignKey("SeatID")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("WebApplication1.Models.Entities.ShowTime", "ShowTime")
                         .WithMany("Tickets")
                         .HasForeignKey("ShowTimeID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Order");

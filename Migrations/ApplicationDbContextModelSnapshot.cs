@@ -670,13 +670,13 @@ namespace WebApplication1.Migrations
                     b.HasOne("WebApplication1.Models.Entities.Seat", "Seat")
                         .WithMany("Tickets")
                         .HasForeignKey("SeatID")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("WebApplication1.Models.Entities.ShowTime", "ShowTime")
                         .WithMany("Tickets")
                         .HasForeignKey("ShowTimeID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Order");
