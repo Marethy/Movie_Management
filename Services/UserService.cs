@@ -23,7 +23,7 @@ namespace WebApplication1.Services
             return _mapper.Map<List<UserDTO>>(users);
         }
 
-        public async Task<UserDTO> GetUserByIdAsync(int userId)
+        public async Task<UserDTO> GetUserByIdAsync(string userId)
         {
             var user = await _userRepository.GetUserByIdAsync(userId);
             return _mapper.Map<UserDTO>(user);
@@ -41,7 +41,7 @@ namespace WebApplication1.Services
             await _userRepository.UpdateUserAsync(user);
         }
 
-        public async Task DeleteUserAsync(int userId)
+        public async Task DeleteUserAsync(string userId)
         {
             await _userRepository.DeleteUserAsync(userId);
         }

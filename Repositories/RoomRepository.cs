@@ -2,10 +2,11 @@
 using System.Runtime.InteropServices;
 using WebApplication1.Data;
 using WebApplication1.Models.Entities;
+using WebApplication1.Repositories.Interface;
 
 namespace WebApplication1.Repositories
 {
-    public class RoomRepository
+    public class RoomRepository:IRoomRepository
     {
         private readonly ApplicationDbContext _context;
 
@@ -40,6 +41,12 @@ namespace WebApplication1.Repositories
         {
             _context.Rooms.Update(room); 
             await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateRoomAsyc(Room room)
+        {
+            _context.Rooms.Update(room);
+            await _context.SaveChangesAsync();  
         }
     }
 }

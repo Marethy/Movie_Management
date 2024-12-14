@@ -5,9 +5,9 @@ namespace WebApplication1.Repositories.Interface
     public interface IUserRepository
     {
         Task<IEnumerable<User>> GetAllUsersAsync();
-        Task<User> GetUserByIdAsync(int userId);
+        Task<User?> GetUserByIdAsync(string userId);
         Task AddUserAsync(User user);
-        Task DeleteUserAsync(int userId);
+        Task DeleteUserAsync(string userId);
         Task UpdateUserAsync(User user);
 
     }

@@ -7,6 +7,7 @@ using WebApplication1.Repositories.Interface;
 using WebApplication1.Repositories;
 using WebApplication1.Services;
 using WebApplication1.Services.Interface;
+using WebApplication1.Models.DTOs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,17 @@ builder.Services.AddScoped<GenreService>();
 
 // Đăng ký các Repository và AutoMapper
 builder.Services.AddScoped<IGenreRepository, GenreRepository>();
+builder.Services.AddScoped<IMovieGenreRepository, MovieGenreRepository>();
+builder.Services.AddScoped<IMovieGenreRepository, MovieGenreRepository>();
+builder.Services.AddScoped<IMovieRepository, MovieRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IRoomRepository, RoomRepository>();
+builder.Services.AddScoped<ISeatRepository, SeatRepository>();
+builder.Services.AddScoped<IShowTimeRepository, ShowTimeRepository>();
+builder.Services.AddScoped<ITicketRepository, TicketRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 // Đăng ký các dịch vụ khác
