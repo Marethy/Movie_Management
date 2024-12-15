@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebApplication1.Presentation.Controllers
+namespace WebApplication1.Domain.Entities
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MovieController : ControllerBase
+    public class OrderProductController : ControllerBase
     {
     }
 }

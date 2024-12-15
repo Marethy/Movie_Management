@@ -5,7 +5,7 @@ namespace WebApplication1.Presentation.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MovieController : ControllerBase
+    public class ShowTimeController : ControllerBase
     {
     }
 }
