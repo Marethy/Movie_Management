@@ -30,7 +30,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Configurations\" />
+    <Folder Include="Application\Validators\" />
+    <Folder Include="Presentation\Configurations\" />
+    <Folder Include="Utils\Helper\" />
   </ItemGroup>
 
 </Project>

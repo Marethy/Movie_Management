@@ -1,27 +1,17 @@
 [
   {
-    "ContainingType": "WebApplication1.Controllers.GenresController",
-    "Method": "GetGenres",
+    "ContainingType": "WebApplication1.Presentation.Controllers.GenresController",
+    "Method": "GetGenresAsync",
     "RelativePath": "api/Genres",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.List\u00601[[WebApplication1.Models.DTOs.GenreDTO, WebApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApplication1.Controllers.GenresController",
-    "Method": "AddGenre",
+    "ContainingType": "WebApplication1.Presentation.Controllers.GenresController",
+    "Method": "AddGenreAsync",
     "RelativePath": "api/Genres",
     "HttpMethod": "POST",
     "IsController": true,
@@ -29,15 +19,15 @@
     "Parameters": [
       {
         "Name": "genreDto",
-        "Type": "WebApplication1.Models.DTOs.GenreDTO",
+        "Type": "WebApplication1.Application.DTOs.GenreDTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApplication1.Controllers.GenresController",
-    "Method": "GetGenreById",
+    "ContainingType": "WebApplication1.Presentation.Controllers.GenresController",
+    "Method": "GetGenreByIdAsync",
     "RelativePath": "api/Genres/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -49,21 +39,11 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "WebApplication1.Models.DTOs.GenreDTO",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApplication1.Controllers.GenresController",
-    "Method": "UpdateGenre",
+    "ContainingType": "WebApplication1.Presentation.Controllers.GenresController",
+    "Method": "UpdateGenreAsync",
     "RelativePath": "api/Genres/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
@@ -76,15 +56,15 @@
       },
       {
         "Name": "genreDto",
-        "Type": "WebApplication1.Models.DTOs.GenreDTO",
+        "Type": "WebApplication1.Application.DTOs.GenreDTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApplication1.Controllers.GenresController",
-    "Method": "DeleteGenre",
+    "ContainingType": "WebApplication1.Presentation.Controllers.GenresController",
+    "Method": "DeleteGenreAsync",
     "RelativePath": "api/Genres/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
@@ -99,7 +79,124 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApplication1.Controllers.OrdersController",
+    "ContainingType": "WebApplication1.Presentation.Controllers.MovieController",
+    "Method": "Get",
+    "RelativePath": "api/Movie",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApplication1.Presentation.Controllers.MovieController",
+    "Method": "Post",
+    "RelativePath": "api/Movie",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "value",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApplication1.Presentation.Controllers.MovieController",
+    "Method": "Get",
+    "RelativePath": "api/Movie/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApplication1.Presentation.Controllers.MovieController",
+    "Method": "Put",
+    "RelativePath": "api/Movie/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "value",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApplication1.Presentation.Controllers.MovieController",
+    "Method": "Delete",
+    "RelativePath": "api/Movie/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "WebApplication1.Presentation.Controllers.OrdersController",
     "Method": "GetOrders",
     "RelativePath": "api/Orders",
     "HttpMethod": "GET",
@@ -108,7 +205,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[WebApplication1.Models.Entities.Order, WebApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[WebApplication1.Domain.Entities.Order, WebApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -119,7 +216,7 @@
     ]
   },
   {
-    "ContainingType": "WebApplication1.Controllers.OrdersController",
+    "ContainingType": "WebApplication1.Presentation.Controllers.OrdersController",
     "Method": "PostOrder",
     "RelativePath": "api/Orders",
     "HttpMethod": "POST",
@@ -128,13 +225,13 @@
     "Parameters": [
       {
         "Name": "order",
-        "Type": "WebApplication1.Models.Entities.Order",
+        "Type": "WebApplication1.Domain.Entities.Order",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "WebApplication1.Models.Entities.Order",
+        "Type": "WebApplication1.Domain.Entities.Order",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -145,7 +242,7 @@
     ]
   },
   {
-    "ContainingType": "WebApplication1.Controllers.OrdersController",
+    "ContainingType": "WebApplication1.Presentation.Controllers.OrdersController",
     "Method": "GetOrder",
     "RelativePath": "api/Orders/{id}",
     "HttpMethod": "GET",
@@ -160,7 +257,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "WebApplication1.Models.Entities.Order",
+        "Type": "WebApplication1.Domain.Entities.Order",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -171,7 +268,7 @@
     ]
   },
   {
-    "ContainingType": "WebApplication1.Controllers.OrdersController",
+    "ContainingType": "WebApplication1.Presentation.Controllers.OrdersController",
     "Method": "PutOrder",
     "RelativePath": "api/Orders/{id}",
     "HttpMethod": "PUT",
@@ -185,14 +282,14 @@
       },
       {
         "Name": "order",
-        "Type": "WebApplication1.Models.Entities.Order",
+        "Type": "WebApplication1.Domain.Entities.Order",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApplication1.Controllers.OrdersController",
+    "ContainingType": "WebApplication1.Presentation.Controllers.OrdersController",
     "Method": "DeleteOrder",
     "RelativePath": "api/Orders/{id}",
     "HttpMethod": "DELETE",
@@ -208,7 +305,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApplication1.Controllers.ProductsController",
+    "ContainingType": "WebApplication1.Presentation.Controllers.ProductsController",
     "Method": "GetProducts",
     "RelativePath": "api/Products",
     "HttpMethod": "GET",
@@ -217,7 +314,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[WebApplication1.Models.Entities.Product, WebApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[WebApplication1.Domain.Entities.Product, WebApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -228,7 +325,7 @@
     ]
   },
   {
-    "ContainingType": "WebApplication1.Controllers.ProductsController",
+    "ContainingType": "WebApplication1.Presentation.Controllers.ProductsController",
     "Method": "PostProduct",
     "RelativePath": "api/Products",
     "HttpMethod": "POST",
@@ -237,13 +334,13 @@
     "Parameters": [
       {
         "Name": "product",
-        "Type": "WebApplication1.Models.Entities.Product",
+        "Type": "WebApplication1.Domain.Entities.Product",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "WebApplication1.Models.Entities.Product",
+        "Type": "WebApplication1.Domain.Entities.Product",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -254,7 +351,7 @@
     ]
   },
   {
-    "ContainingType": "WebApplication1.Controllers.ProductsController",
+    "ContainingType": "WebApplication1.Presentation.Controllers.ProductsController",
     "Method": "GetProduct",
     "RelativePath": "api/Products/{id}",
     "HttpMethod": "GET",
@@ -269,7 +366,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "WebApplication1.Models.Entities.Product",
+        "Type": "WebApplication1.Domain.Entities.Product",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -280,7 +377,7 @@
     ]
   },
   {
-    "ContainingType": "WebApplication1.Controllers.ProductsController",
+    "ContainingType": "WebApplication1.Presentation.Controllers.ProductsController",
     "Method": "PutProduct",
     "RelativePath": "api/Products/{id}",
     "HttpMethod": "PUT",
@@ -294,14 +391,14 @@
       },
       {
         "Name": "product",
-        "Type": "WebApplication1.Models.Entities.Product",
+        "Type": "WebApplication1.Domain.Entities.Product",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApplication1.Controllers.ProductsController",
+    "ContainingType": "WebApplication1.Presentation.Controllers.ProductsController",
     "Method": "DeleteProduct",
     "RelativePath": "api/Products/{id}",
     "HttpMethod": "DELETE",
@@ -317,7 +414,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApplication1.Controllers.RoomsController",
+    "ContainingType": "WebApplication1.Presentation.Controllers.RoomsController",
     "Method": "GetRooms",
     "RelativePath": "api/Rooms",
     "HttpMethod": "GET",
@@ -326,7 +423,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[WebApplication1.Models.Entities.Room, WebApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[WebApplication1.Domain.Entities.Room, WebApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -337,7 +434,7 @@
     ]
   },
   {
-    "ContainingType": "WebApplication1.Controllers.RoomsController",
+    "ContainingType": "WebApplication1.Presentation.Controllers.RoomsController",
     "Method": "PostRoom",
     "RelativePath": "api/Rooms",
     "HttpMethod": "POST",
@@ -346,13 +443,13 @@
     "Parameters": [
       {
         "Name": "room",
-        "Type": "WebApplication1.Models.Entities.Room",
+        "Type": "WebApplication1.Domain.Entities.Room",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "WebApplication1.Models.Entities.Room",
+        "Type": "WebApplication1.Domain.Entities.Room",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -363,7 +460,7 @@
     ]
   },
   {
-    "ContainingType": "WebApplication1.Controllers.RoomsController",
+    "ContainingType": "WebApplication1.Presentation.Controllers.RoomsController",
     "Method": "GetRoom",
     "RelativePath": "api/Rooms/{id}",
     "HttpMethod": "GET",
@@ -378,7 +475,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "WebApplication1.Models.Entities.Room",
+        "Type": "WebApplication1.Domain.Entities.Room",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -389,7 +486,7 @@
     ]
   },
   {
-    "ContainingType": "WebApplication1.Controllers.RoomsController",
+    "ContainingType": "WebApplication1.Presentation.Controllers.RoomsController",
     "Method": "PutRoom",
     "RelativePath": "api/Rooms/{id}",
     "HttpMethod": "PUT",
@@ -403,14 +500,14 @@
       },
       {
         "Name": "room",
-        "Type": "WebApplication1.Models.Entities.Room",
+        "Type": "WebApplication1.Domain.Entities.Room",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApplication1.Controllers.RoomsController",
+    "ContainingType": "WebApplication1.Presentation.Controllers.RoomsController",
     "Method": "DeleteRoom",
     "RelativePath": "api/Rooms/{id}",
     "HttpMethod": "DELETE",
@@ -426,7 +523,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApplication1.Controllers.SeatsController",
+    "ContainingType": "WebApplication1.Presentation.Controllers.SeatsController",
     "Method": "GetSeats",
     "RelativePath": "api/Seats",
     "HttpMethod": "GET",
@@ -435,7 +532,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[WebApplication1.Models.Entities.Seat, WebApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[WebApplication1.Domain.Entities.Seat, WebApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -446,7 +543,7 @@
     ]
   },
   {
-    "ContainingType": "WebApplication1.Controllers.SeatsController",
+    "ContainingType": "WebApplication1.Presentation.Controllers.SeatsController",
     "Method": "PostSeat",
     "RelativePath": "api/Seats",
     "HttpMethod": "POST",
@@ -455,13 +552,13 @@
     "Parameters": [
       {
         "Name": "seat",
-        "Type": "WebApplication1.Models.Entities.Seat",
+        "Type": "WebApplication1.Domain.Entities.Seat",
         "IsRequired": true
       }
     ],
     "ReturnTypes": [
       {
-        "Type": "WebApplication1.Models.Entities.Seat",
+        "Type": "WebApplication1.Domain.Entities.Seat",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -472,7 +569,7 @@
     ]
   },
   {
-    "ContainingType": "WebApplication1.Controllers.SeatsController",
+    "ContainingType": "WebApplication1.Presentation.Controllers.SeatsController",
     "Method": "GetSeat",
     "RelativePath": "api/Seats/{id}",
     "HttpMethod": "GET",
@@ -487,7 +584,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "WebApplication1.Models.Entities.Seat",
+        "Type": "WebApplication1.Domain.Entities.Seat",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -498,7 +595,7 @@
     ]
   },
   {
-    "ContainingType": "WebApplication1.Controllers.SeatsController",
+    "ContainingType": "WebApplication1.Presentation.Controllers.SeatsController",
     "Method": "PutSeat",
     "RelativePath": "api/Seats/{id}",
     "HttpMethod": "PUT",
@@ -512,14 +609,14 @@
       },
       {
         "Name": "seat",
-        "Type": "WebApplication1.Models.Entities.Seat",
+        "Type": "WebApplication1.Domain.Entities.Seat",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApplication1.Controllers.SeatsController",
+    "ContainingType": "WebApplication1.Presentation.Controllers.SeatsController",
     "Method": "DeleteSeat",
     "RelativePath": "api/Seats/{id}",
     "HttpMethod": "DELETE",
@@ -535,116 +632,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApplication1.Controllers.TheatersController",
-    "Method": "GetTheaters",
-    "RelativePath": "api/Theaters",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[WebApplication1.Models.Entities.Theater, WebApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "WebApplication1.Controllers.TheatersController",
-    "Method": "PostTheater",
-    "RelativePath": "api/Theaters",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "theater",
-        "Type": "WebApplication1.Models.Entities.Theater",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "WebApplication1.Models.Entities.Theater",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "WebApplication1.Controllers.TheatersController",
-    "Method": "GetTheater",
-    "RelativePath": "api/Theaters/{id}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "WebApplication1.Models.Entities.Theater",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "WebApplication1.Controllers.TheatersController",
-    "Method": "PutTheater",
-    "RelativePath": "api/Theaters/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "theater",
-        "Type": "WebApplication1.Models.Entities.Theater",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "WebApplication1.Controllers.TheatersController",
-    "Method": "DeleteTheater",
-    "RelativePath": "api/Theaters/{id}",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "WebApplication1.Controllers.WeatherForecastController",
+    "ContainingType": "WebApplication1.Presentation.Controllers.WeatherForecastController",
     "Method": "Get",
     "RelativePath": "WeatherForecast",
     "HttpMethod": "GET",
