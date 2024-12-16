@@ -10,7 +10,7 @@ namespace WebApplication1.Infrastructure.Repositories
         private readonly ApplicationDbContext _context = context;
 
         public async Task<IEnumerable<Order>> GetAllOrdersAsync()
-        {
+        {   
             return await _context.Orders.ToListAsync();
         }
 

@@ -12,8 +12,8 @@ using WebApplication1.Infrastructure.Data;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241214211848_UpdateUserClass")]
-    partial class UpdateUserClass
+    [Migration("20241216182440_Seed")]
+    partial class Seed
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -158,7 +158,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("WebApplication1.Models.Entities.Genre", b =>
+            modelBuilder.Entity("WebApplication1.Domain.Entities.Genre", b =>
                 {
                     b.Property<int>("GenreId")
                         .ValueGeneratedOnAdd()
@@ -175,7 +175,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("Genres");
                 });
 
-            modelBuilder.Entity("WebApplication1.Models.Entities.Movie", b =>
+            modelBuilder.Entity("WebApplication1.Domain.Entities.Movie", b =>
                 {
                     b.Property<int>("MovieId")
                         .ValueGeneratedOnAdd()
@@ -222,7 +222,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("Movies");
                 });
 
-            modelBuilder.Entity("WebApplication1.Models.Entities.MovieGenre", b =>
+            modelBuilder.Entity("WebApplication1.Domain.Entities.MovieGenre", b =>
                 {
                     b.Property<int>("MovieID")
                         .HasColumnType("int");
@@ -237,7 +237,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("MovieGenres");
                 });
 
-            modelBuilder.Entity("WebApplication1.Models.Entities.Order", b =>
+            modelBuilder.Entity("WebApplication1.Domain.Entities.Order", b =>
                 {
                     b.Property<int>("OrderID")
                         .ValueGeneratedOnAdd()
@@ -263,7 +263,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("WebApplication1.Models.Entities.OrderProduct", b =>
+            modelBuilder.Entity("WebApplication1.Domain.Entities.OrderProduct", b =>
                 {
                     b.Property<int>("OrderID")
                         .HasColumnType("int");
@@ -281,7 +281,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("OrderProducts");
                 });
 
-            modelBuilder.Entity("WebApplication1.Models.Entities.Product", b =>
+            modelBuilder.Entity("WebApplication1.Domain.Entities.Product", b =>
                 {
                     b.Property<int>("ProductID")
                         .ValueGeneratedOnAdd()
@@ -310,7 +310,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("WebApplication1.Models.Entities.Room", b =>
+            modelBuilder.Entity("WebApplication1.Domain.Entities.Room", b =>
                 {
                     b.Property<int>("RoomID")
                         .ValueGeneratedOnAdd()
@@ -336,7 +336,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("Rooms");
                 });
 
-            modelBuilder.Entity("WebApplication1.Models.Entities.Seat", b =>
+            modelBuilder.Entity("WebApplication1.Domain.Entities.Seat", b =>
                 {
                     b.Property<int>("SeatID")
                         .ValueGeneratedOnAdd()
@@ -361,7 +361,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("Seats");
                 });
 
-            modelBuilder.Entity("WebApplication1.Models.Entities.ShowTime", b =>
+            modelBuilder.Entity("WebApplication1.Domain.Entities.ShowTime", b =>
                 {
                     b.Property<int>("ShowTimeID")
                         .ValueGeneratedOnAdd()
@@ -387,7 +387,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("ShowTimes");
                 });
 
-            modelBuilder.Entity("WebApplication1.Models.Entities.Theater", b =>
+            modelBuilder.Entity("WebApplication1.Domain.Entities.Theater", b =>
                 {
                     b.Property<int>("TheaterID")
                         .ValueGeneratedOnAdd()
@@ -408,7 +408,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("Theaters");
                 });
 
-            modelBuilder.Entity("WebApplication1.Models.Entities.Ticket", b =>
+            modelBuilder.Entity("WebApplication1.Domain.Entities.Ticket", b =>
                 {
                     b.Property<int>("TicketID")
                         .ValueGeneratedOnAdd()
@@ -440,7 +440,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("Tickets");
                 });
 
-            modelBuilder.Entity("WebApplication1.Models.Entities.User", b =>
+            modelBuilder.Entity("WebApplication1.Domain.Entities.User", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -451,6 +451,9 @@ namespace WebApplication1.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DateOfBirth")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
@@ -516,7 +519,7 @@ namespace WebApplication1.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("WebApplication1.Models.Entities.User", null)
+                    b.HasOne("WebApplication1.Domain.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -525,7 +528,7 @@ namespace WebApplication1.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("WebApplication1.Models.Entities.User", null)
+                    b.HasOne("WebApplication1.Domain.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -540,7 +543,7 @@ namespace WebApplication1.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebApplication1.Models.Entities.User", null)
+                    b.HasOne("WebApplication1.Domain.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -549,22 +552,22 @@ namespace WebApplication1.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("WebApplication1.Models.Entities.User", null)
+                    b.HasOne("WebApplication1.Domain.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("WebApplication1.Models.Entities.MovieGenre", b =>
+            modelBuilder.Entity("WebApplication1.Domain.Entities.MovieGenre", b =>
                 {
-                    b.HasOne("WebApplication1.Models.Entities.Genre", "Genre")
+                    b.HasOne("WebApplication1.Domain.Entities.Genre", "Genre")
                         .WithMany("MovieGenres")
                         .HasForeignKey("GenreID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebApplication1.Models.Entities.Movie", "Movie")
+                    b.HasOne("WebApplication1.Domain.Entities.Movie", "Movie")
                         .WithMany("MovieGenres")
                         .HasForeignKey("MovieID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -575,9 +578,9 @@ namespace WebApplication1.Migrations
                     b.Navigation("Movie");
                 });
 
-            modelBuilder.Entity("WebApplication1.Models.Entities.Order", b =>
+            modelBuilder.Entity("WebApplication1.Domain.Entities.Order", b =>
                 {
-                    b.HasOne("WebApplication1.Models.Entities.User", "User")
+                    b.HasOne("WebApplication1.Domain.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -586,15 +589,15 @@ namespace WebApplication1.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("WebApplication1.Models.Entities.OrderProduct", b =>
+            modelBuilder.Entity("WebApplication1.Domain.Entities.OrderProduct", b =>
                 {
-                    b.HasOne("WebApplication1.Models.Entities.Order", "Order")
+                    b.HasOne("WebApplication1.Domain.Entities.Order", "Order")
                         .WithMany("OrderProducts")
                         .HasForeignKey("OrderID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebApplication1.Models.Entities.Product", "Product")
+                    b.HasOne("WebApplication1.Domain.Entities.Product", "Product")
                         .WithMany("OrderProducts")
                         .HasForeignKey("ProductID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -605,9 +608,9 @@ namespace WebApplication1.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("WebApplication1.Models.Entities.Room", b =>
+            modelBuilder.Entity("WebApplication1.Domain.Entities.Room", b =>
                 {
-                    b.HasOne("WebApplication1.Models.Entities.Theater", "Theater")
+                    b.HasOne("WebApplication1.Domain.Entities.Theater", "Theater")
                         .WithMany("Rooms")
                         .HasForeignKey("TheaterID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -616,9 +619,9 @@ namespace WebApplication1.Migrations
                     b.Navigation("Theater");
                 });
 
-            modelBuilder.Entity("WebApplication1.Models.Entities.Seat", b =>
+            modelBuilder.Entity("WebApplication1.Domain.Entities.Seat", b =>
                 {
-                    b.HasOne("WebApplication1.Models.Entities.Room", "Room")
+                    b.HasOne("WebApplication1.Domain.Entities.Room", "Room")
                         .WithMany("Seats")
                         .HasForeignKey("RoomID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -627,15 +630,15 @@ namespace WebApplication1.Migrations
                     b.Navigation("Room");
                 });
 
-            modelBuilder.Entity("WebApplication1.Models.Entities.ShowTime", b =>
+            modelBuilder.Entity("WebApplication1.Domain.Entities.ShowTime", b =>
                 {
-                    b.HasOne("WebApplication1.Models.Entities.Movie", "Movie")
+                    b.HasOne("WebApplication1.Domain.Entities.Movie", "Movie")
                         .WithMany("ShowTimes")
                         .HasForeignKey("MovieID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebApplication1.Models.Entities.Room", "Room")
+                    b.HasOne("WebApplication1.Domain.Entities.Room", "Room")
                         .WithMany("ShowTimes")
                         .HasForeignKey("RoomID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -646,21 +649,21 @@ namespace WebApplication1.Migrations
                     b.Navigation("Room");
                 });
 
-            modelBuilder.Entity("WebApplication1.Models.Entities.Ticket", b =>
+            modelBuilder.Entity("WebApplication1.Domain.Entities.Ticket", b =>
                 {
-                    b.HasOne("WebApplication1.Models.Entities.Order", "Order")
+                    b.HasOne("WebApplication1.Domain.Entities.Order", "Order")
                         .WithMany("Tickets")
                         .HasForeignKey("OrderID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebApplication1.Models.Entities.Seat", "Seat")
+                    b.HasOne("WebApplication1.Domain.Entities.Seat", "Seat")
                         .WithMany("Tickets")
                         .HasForeignKey("SeatID")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("WebApplication1.Models.Entities.ShowTime", "ShowTime")
+                    b.HasOne("WebApplication1.Domain.Entities.ShowTime", "ShowTime")
                         .WithMany("Tickets")
                         .HasForeignKey("ShowTimeID")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -673,48 +676,48 @@ namespace WebApplication1.Migrations
                     b.Navigation("ShowTime");
                 });
 
-            modelBuilder.Entity("WebApplication1.Models.Entities.Genre", b =>
+            modelBuilder.Entity("WebApplication1.Domain.Entities.Genre", b =>
                 {
                     b.Navigation("MovieGenres");
                 });
 
-            modelBuilder.Entity("WebApplication1.Models.Entities.Movie", b =>
+            modelBuilder.Entity("WebApplication1.Domain.Entities.Movie", b =>
                 {
                     b.Navigation("MovieGenres");
 
                     b.Navigation("ShowTimes");
                 });
 
-            modelBuilder.Entity("WebApplication1.Models.Entities.Order", b =>
+            modelBuilder.Entity("WebApplication1.Domain.Entities.Order", b =>
                 {
                     b.Navigation("OrderProducts");
 
                     b.Navigation("Tickets");
                 });
 
-            modelBuilder.Entity("WebApplication1.Models.Entities.Product", b =>
+            modelBuilder.Entity("WebApplication1.Domain.Entities.Product", b =>
                 {
                     b.Navigation("OrderProducts");
                 });
 
-            modelBuilder.Entity("WebApplication1.Models.Entities.Room", b =>
+            modelBuilder.Entity("WebApplication1.Domain.Entities.Room", b =>
                 {
                     b.Navigation("Seats");
 
                     b.Navigation("ShowTimes");
                 });
 
-            modelBuilder.Entity("WebApplication1.Models.Entities.Seat", b =>
+            modelBuilder.Entity("WebApplication1.Domain.Entities.Seat", b =>
                 {
                     b.Navigation("Tickets");
                 });
 
-            modelBuilder.Entity("WebApplication1.Models.Entities.ShowTime", b =>
+            modelBuilder.Entity("WebApplication1.Domain.Entities.ShowTime", b =>
                 {
                     b.Navigation("Tickets");
                 });
 
-            modelBuilder.Entity("WebApplication1.Models.Entities.Theater", b =>
+            modelBuilder.Entity("WebApplication1.Domain.Entities.Theater", b =>
                 {
                     b.Navigation("Rooms");
                 });

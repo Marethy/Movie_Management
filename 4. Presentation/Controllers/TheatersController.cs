@@ -8,9 +8,8 @@ namespace WebApplication1.Presentation.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TheatersController(ITheaterService theaterService) : BaseController
+    public class TheatersController(ITheaterService _theaterService) : BaseController
     {
-        private readonly ITheaterService _theaterService = theaterService;
         [HttpGet]
         public async Task<IActionResult> GetAllTheatersAsync()
         {

@@ -40,5 +40,29 @@ namespace WebApplication1.Application.Services
         {
             await _seatRepository.DeleteSeatAsync(seatId);
         }
+        public async Task GenerateSeatsForRoomAsync(int roomId, int capacity)
+        {
+            var seats = new List<Seat>();
+            char rowLabel = 'A'; // Ký hiệu hàng bắt đầu từ 'A'
+
+            for (int i = 0; i < capacity; i++)
+            {
+                // Tạo số ghế dạng A1, A2, ..., B1, B2, ...
+                string seatNumber = $"{rowLabel}{(i % 10) + 1}";
+
+                seats.Add(new Seat
+                {
+                    RoomID = roomId,
+                    SeatNumber = seatNumber,
+                    Status = Utils.Enums.SeatStatus.Available // Mặc định là Available
+                });
+
+                // Khi ghế thứ 10 hoàn thành, chuyển sang hàng tiếp theo
+                if ((i + 1) % 10 == 0) rowLabel++;
+            }
+
+            // Lưu vào cơ sở dữ liệu
+            await _seatRepository.AddSeatsAsync(seats);
+        }
     }
 }

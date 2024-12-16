@@ -6,7 +6,7 @@ namespace WebApplication1.Domain.Entities
     public class User : IdentityUser
     {
         [StringLength(100)]
-        public  string? FullName = string.Empty;
+        public string? FullName;
         public  DateTime? DateOfBirth { get; set; }
 
     }

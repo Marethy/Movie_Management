@@ -9,7 +9,7 @@ namespace WebApplication1.Domain.Entities
         public required string SeatNumber { get; set; }
         public required SeatStatus Status { get; set; }
 
-        public required Room Room { get; set; }
+        public  Room? Room { get; set; }
         public ICollection<Ticket>? Tickets { get; set; }
     }
 }

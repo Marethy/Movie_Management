@@ -9,6 +9,9 @@ namespace WebApplication1.Domain.Interfaces.Repositories
         Task AddSeatAsync(Seat seat);
         Task DeleteSeatAsync(int seatId);
         Task UpdateSeatAsync(Seat seat);
+        Task AddSeatsAsync(List<Seat> seats);
+
+
 
     }
 }

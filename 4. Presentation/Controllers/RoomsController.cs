@@ -3,15 +3,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using WebApplication1.Application.DTOs;
 using WebApplication1.Application.Interfaces.Services;
+using WebApplication1.Application.Services;
+using WebApplication1.Domain.Entities;
 
 namespace WebApplication1.Presentation.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RoomsController(IRoomService roomService) : BaseController
+    public class RoomsController(IRoomService roomService, ISeatService seatService) : BaseController
     {
         private readonly IRoomService _roomService = roomService;
-        [HttpGet]
+        private readonly ISeatService _seatService = seatService;
+
+        [HttpGet]   
         public async Task<IActionResult> GetAllRoomsAsync()
         {
             var rooms = await _roomService.GetAllRoomsAsync();
@@ -29,6 +33,8 @@ namespace WebApplication1.Presentation.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             await _roomService.AddRoomAsync(roomDto);
+            // Tự động tạo ghế cho phòng dựa trên capacity
+            await _seatService.GenerateSeatsForRoomAsync(roomDto.RoomID, roomDto.Capacity);
             return CreatedAtAction(nameof(GetRoomByIdAsync), new { id = roomDto.RoomID }, roomDto);
         }
 

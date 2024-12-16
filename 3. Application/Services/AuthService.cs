@@ -8,19 +8,8 @@ using WebApplication1._3._Application.Interfaces.Services;
 using WebApplication1.Application.DTOs;
 using WebApplication1.Domain.Entities;
 
-public class AuthService : IAuthService
+public class AuthService(UserManager<User> _userManager, SignInManager<User> _signInManager, IConfiguration _configuration) : IAuthService
 {
-    private readonly UserManager<User> _userManager;
-    private readonly SignInManager<User> _signInManager;
-    private readonly IConfiguration _configuration;
-
-    public AuthService(UserManager<User> userManager, SignInManager<User> signInManager, IConfiguration configuration)
-    {
-        _userManager = userManager;
-        _signInManager = signInManager;
-        _configuration = configuration;
-    }
-
     public async Task<string> RegisterAsync(RegisterDTO registerDto)
     {
         var user = new User

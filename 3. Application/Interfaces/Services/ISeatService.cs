@@ -9,5 +9,6 @@ namespace WebApplication1.Application.Interfaces.Services
         Task AddSeatAsync(SeatDTO seatDto);
         Task UpdateSeatAsync(SeatDTO seatDto);
         Task DeleteSeatAsync(int seatId);
+        Task GenerateSeatsForRoomAsync(int roomId, int capacity);
     }
 }

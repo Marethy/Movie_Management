@@ -10,6 +10,6 @@ namespace WebApplication1.Application.DTOs
         public required string SeatNumber { get; set; }
         public required SeatStatus Status { get; set; }
 
-        public required RoomDTO Room { get; set; }
+        public  RoomDTO? Room { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Mono.TextTemplating;
 using WebApplication1.Domain.Entities;
 using WebApplication1.Domain.Interfaces.Repositories;
 using WebApplication1.Infrastructure.Data;
@@ -35,6 +36,12 @@ namespace WebApplication1.Infrastructure.Repositories
         public async Task UpdateSeatAsync(Seat seat)
         {
             _context.Seats.Update(seat);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task AddSeatsAsync(List<Seat> seats)
+        {
+            await _context.Seats.AddRangeAsync(seats);
             await _context.SaveChangesAsync();
         }
     }

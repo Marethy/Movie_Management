@@ -3,12 +3,11 @@
     public class ShowTimeDTO
     {
         public int ShowTimeID { get; set; }
-        public int MovieID { get; set; }
-        public int RoomID { get; set; }
-        public DateTime Time { get; set; }
+        public required int MovieID { get; set; }
+        public required int RoomID { get; set; }
+        public required DateTime Time { get; set; }
 
-        public string MovieTitle { get; set; } = string.Empty;
-        public string RoomName { get; set; } = string.Empty;
+        public string? MovieTitle { get; set; }
 
         public ICollection<TicketDTO>? Tickets { get; set; }
     }
