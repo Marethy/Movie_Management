@@ -13,6 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Cấu hình dịch vụ cho Identity
 builder.Services.AddIdentity<User, IdentityRole>()
+    
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 

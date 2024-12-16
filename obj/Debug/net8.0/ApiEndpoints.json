@@ -1,7 +1,7 @@
 [
   {
     "ContainingType": "WebApplication1.Presentation.Controllers.GenresController",
-    "Method": "GetGenresAsync",
+    "Method": "GetAllGenresAsync",
     "RelativePath": "api/Genres",
     "HttpMethod": "GET",
     "IsController": true,
@@ -79,51 +79,35 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApplication1.Presentation.Controllers.MovieController",
-    "Method": "Get",
-    "RelativePath": "api/Movie",
+    "ContainingType": "WebApplication1.Presentation.Controllers.MoviesController",
+    "Method": "GetAllMovieAsync",
+    "RelativePath": "api/Movies",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApplication1.Presentation.Controllers.MovieController",
-    "Method": "Post",
-    "RelativePath": "api/Movie",
+    "ContainingType": "WebApplication1.Presentation.Controllers.MoviesController",
+    "Method": "AddMovieAsync",
+    "RelativePath": "api/Movies",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "value",
-        "Type": "System.String",
+        "Name": "movieDto",
+        "Type": "WebApplication1.Application.DTOs.MovieDTO",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApplication1.Presentation.Controllers.MovieController",
-    "Method": "Get",
-    "RelativePath": "api/Movie/{id}",
+    "ContainingType": "WebApplication1.Presentation.Controllers.MoviesController",
+    "Method": "GetMovieByIdAsync",
+    "RelativePath": "api/Movies/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -134,22 +118,12 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "System.String",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApplication1.Presentation.Controllers.MovieController",
-    "Method": "Put",
-    "RelativePath": "api/Movie/{id}",
+    "ContainingType": "WebApplication1.Presentation.Controllers.MoviesController",
+    "Method": "UpdateMovieAsync",
+    "RelativePath": "api/Movies/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -160,23 +134,17 @@
         "IsRequired": true
       },
       {
-        "Name": "value",
-        "Type": "System.String",
+        "Name": "movieDTO",
+        "Type": "WebApplication1.Application.DTOs.MovieDTO",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApplication1.Presentation.Controllers.MovieController",
-    "Method": "Delete",
-    "RelativePath": "api/Movie/{id}",
+    "ContainingType": "WebApplication1.Presentation.Controllers.MoviesController",
+    "Method": "DeleteMovieAsync",
+    "RelativePath": "api/Movies/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -187,63 +155,37 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Void",
-        "MediaTypes": [],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "WebApplication1.Presentation.Controllers.OrdersController",
-    "Method": "GetOrders",
+    "Method": "GetAllOrdersAsync",
     "RelativePath": "api/Orders",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[WebApplication1.Domain.Entities.Order, WebApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "WebApplication1.Presentation.Controllers.OrdersController",
-    "Method": "PostOrder",
+    "Method": "AddOrderAsync",
     "RelativePath": "api/Orders",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "order",
-        "Type": "WebApplication1.Domain.Entities.Order",
+        "Name": "orderDto",
+        "Type": "WebApplication1.Application.DTOs.OrderDTO",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "WebApplication1.Domain.Entities.Order",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "WebApplication1.Presentation.Controllers.OrdersController",
-    "Method": "GetOrder",
+    "Method": "GetOrderByIdAsync",
     "RelativePath": "api/Orders/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -255,21 +197,11 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "WebApplication1.Domain.Entities.Order",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "WebApplication1.Presentation.Controllers.OrdersController",
-    "Method": "PutOrder",
+    "Method": "UpdateOrderAsync",
     "RelativePath": "api/Orders/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
@@ -281,8 +213,8 @@
         "IsRequired": true
       },
       {
-        "Name": "order",
-        "Type": "WebApplication1.Domain.Entities.Order",
+        "Name": "orderDto",
+        "Type": "WebApplication1.Application.DTOs.OrderDTO",
         "IsRequired": true
       }
     ],
@@ -290,7 +222,7 @@
   },
   {
     "ContainingType": "WebApplication1.Presentation.Controllers.OrdersController",
-    "Method": "DeleteOrder",
+    "Method": "DeleteOrderAsync",
     "RelativePath": "api/Orders/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
@@ -306,53 +238,33 @@
   },
   {
     "ContainingType": "WebApplication1.Presentation.Controllers.ProductsController",
-    "Method": "GetProducts",
+    "Method": "GetAllProductsAsync",
     "RelativePath": "api/Products",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[WebApplication1.Domain.Entities.Product, WebApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "WebApplication1.Presentation.Controllers.ProductsController",
-    "Method": "PostProduct",
+    "Method": "AddProductAsync",
     "RelativePath": "api/Products",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "product",
-        "Type": "WebApplication1.Domain.Entities.Product",
+        "Name": "productDto",
+        "Type": "WebApplication1.Application.DTOs.ProductDTO",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "WebApplication1.Domain.Entities.Product",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "WebApplication1.Presentation.Controllers.ProductsController",
-    "Method": "GetProduct",
+    "Method": "GetProductByIdAsync",
     "RelativePath": "api/Products/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -364,21 +276,11 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "WebApplication1.Domain.Entities.Product",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "WebApplication1.Presentation.Controllers.ProductsController",
-    "Method": "PutProduct",
+    "Method": "UpdateProductAsync",
     "RelativePath": "api/Products/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
@@ -390,8 +292,8 @@
         "IsRequired": true
       },
       {
-        "Name": "product",
-        "Type": "WebApplication1.Domain.Entities.Product",
+        "Name": "productDto",
+        "Type": "WebApplication1.Application.DTOs.ProductDTO",
         "IsRequired": true
       }
     ],
@@ -399,7 +301,7 @@
   },
   {
     "ContainingType": "WebApplication1.Presentation.Controllers.ProductsController",
-    "Method": "DeleteProduct",
+    "Method": "DeleteProductAsync",
     "RelativePath": "api/Products/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
@@ -415,53 +317,33 @@
   },
   {
     "ContainingType": "WebApplication1.Presentation.Controllers.RoomsController",
-    "Method": "GetRooms",
+    "Method": "GetAllRoomsAsync",
     "RelativePath": "api/Rooms",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[WebApplication1.Domain.Entities.Room, WebApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "WebApplication1.Presentation.Controllers.RoomsController",
-    "Method": "PostRoom",
+    "Method": "AddRoomAsync",
     "RelativePath": "api/Rooms",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "room",
-        "Type": "WebApplication1.Domain.Entities.Room",
+        "Name": "roomDto",
+        "Type": "WebApplication1.Application.DTOs.RoomDTO",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "WebApplication1.Domain.Entities.Room",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "WebApplication1.Presentation.Controllers.RoomsController",
-    "Method": "GetRoom",
+    "Method": "GetRoomByIdAsync",
     "RelativePath": "api/Rooms/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -473,21 +355,11 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "WebApplication1.Domain.Entities.Room",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "WebApplication1.Presentation.Controllers.RoomsController",
-    "Method": "PutRoom",
+    "Method": "UpdateRoomAsync",
     "RelativePath": "api/Rooms/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
@@ -499,8 +371,8 @@
         "IsRequired": true
       },
       {
-        "Name": "room",
-        "Type": "WebApplication1.Domain.Entities.Room",
+        "Name": "roomDto",
+        "Type": "WebApplication1.Application.DTOs.RoomDTO",
         "IsRequired": true
       }
     ],
@@ -508,7 +380,7 @@
   },
   {
     "ContainingType": "WebApplication1.Presentation.Controllers.RoomsController",
-    "Method": "DeleteRoom",
+    "Method": "DeleteRoomAsync",
     "RelativePath": "api/Rooms/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
@@ -524,53 +396,33 @@
   },
   {
     "ContainingType": "WebApplication1.Presentation.Controllers.SeatsController",
-    "Method": "GetSeats",
+    "Method": "GetAllSeatsAsync",
     "RelativePath": "api/Seats",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[WebApplication1.Domain.Entities.Seat, WebApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "WebApplication1.Presentation.Controllers.SeatsController",
-    "Method": "PostSeat",
+    "Method": "AddSeatAsync",
     "RelativePath": "api/Seats",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "seat",
-        "Type": "WebApplication1.Domain.Entities.Seat",
+        "Name": "seatDto",
+        "Type": "WebApplication1.Application.DTOs.SeatDTO",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "WebApplication1.Domain.Entities.Seat",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "WebApplication1.Presentation.Controllers.SeatsController",
-    "Method": "GetSeat",
+    "Method": "GetSeatByIdAsync",
     "RelativePath": "api/Seats/{id}",
     "HttpMethod": "GET",
     "IsController": true,
@@ -582,21 +434,11 @@
         "IsRequired": true
       }
     ],
-    "ReturnTypes": [
-      {
-        "Type": "WebApplication1.Domain.Entities.Seat",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
+    "ReturnTypes": []
   },
   {
     "ContainingType": "WebApplication1.Presentation.Controllers.SeatsController",
-    "Method": "PutSeat",
+    "Method": "UpdateSeatAsync",
     "RelativePath": "api/Seats/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
@@ -608,8 +450,8 @@
         "IsRequired": true
       },
       {
-        "Name": "seat",
-        "Type": "WebApplication1.Domain.Entities.Seat",
+        "Name": "seatDto",
+        "Type": "WebApplication1.Application.DTOs.SeatDTO",
         "IsRequired": true
       }
     ],
@@ -617,7 +459,7 @@
   },
   {
     "ContainingType": "WebApplication1.Presentation.Controllers.SeatsController",
-    "Method": "DeleteSeat",
+    "Method": "DeleteSeatAsync",
     "RelativePath": "api/Seats/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
@@ -632,24 +474,240 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "WebApplication1.Presentation.Controllers.WeatherForecastController",
-    "Method": "Get",
-    "RelativePath": "WeatherForecast",
+    "ContainingType": "WebApplication1.Presentation.Controllers.ShowTimesController",
+    "Method": "GetAllShowTimesAsync",
+    "RelativePath": "api/ShowTimes",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": [
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApplication1.Presentation.Controllers.ShowTimesController",
+    "Method": "AddShowTimeAsync",
+    "RelativePath": "api/ShowTimes",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[WebApplication1.WeatherForecast, WebApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
+        "Name": "showtimeDto",
+        "Type": "WebApplication1.Application.DTOs.ShowTimeDTO",
+        "IsRequired": true
       }
     ],
-    "EndpointName": "GetWeatherForecast"
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApplication1.Presentation.Controllers.ShowTimesController",
+    "Method": "GetShowTimeByIdAsync",
+    "RelativePath": "api/ShowTimes/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApplication1.Presentation.Controllers.ShowTimesController",
+    "Method": "UpdateShowTimeAsync",
+    "RelativePath": "api/ShowTimes/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "showtimeDto",
+        "Type": "WebApplication1.Application.DTOs.ShowTimeDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApplication1.Presentation.Controllers.ShowTimesController",
+    "Method": "DeleteShowTimeAsync",
+    "RelativePath": "api/ShowTimes/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApplication1.Presentation.Controllers.TheatersController",
+    "Method": "GetAllTheatersAsync",
+    "RelativePath": "api/Theaters",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApplication1.Presentation.Controllers.TheatersController",
+    "Method": "AddTheaterAsync",
+    "RelativePath": "api/Theaters",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "theaterDto",
+        "Type": "WebApplication1.Application.DTOs.TheaterDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApplication1.Presentation.Controllers.TheatersController",
+    "Method": "GetTheaterByIdAsync",
+    "RelativePath": "api/Theaters/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApplication1.Presentation.Controllers.TheatersController",
+    "Method": "UpdateTheaterAsync",
+    "RelativePath": "api/Theaters/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "theaterDto",
+        "Type": "WebApplication1.Application.DTOs.TheaterDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApplication1.Presentation.Controllers.TheatersController",
+    "Method": "DeleteTheaterAsync",
+    "RelativePath": "api/Theaters/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApplication1.Presentation.Controllers.TicketsController",
+    "Method": "GetAllTicketsAsync",
+    "RelativePath": "api/Tickets",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApplication1.Presentation.Controllers.TicketsController",
+    "Method": "AddTicketAsync",
+    "RelativePath": "api/Tickets",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ticketDto",
+        "Type": "WebApplication1.Application.DTOs.TicketDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApplication1.Presentation.Controllers.TicketsController",
+    "Method": "GetTicketByIdAsync",
+    "RelativePath": "api/Tickets/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApplication1.Presentation.Controllers.TicketsController",
+    "Method": "UpdateTicketAsync",
+    "RelativePath": "api/Tickets/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "ticketDto",
+        "Type": "WebApplication1.Application.DTOs.TicketDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "WebApplication1.Presentation.Controllers.TicketsController",
+    "Method": "DeleteTicketAsync",
+    "RelativePath": "api/Tickets/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

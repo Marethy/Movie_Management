@@ -306,3 +306,6 @@ C:\Users\PC\source\repos\WebApplication1\obj\Debug\net8.0\WebApplication1.pdb
 C:\Users\PC\source\repos\WebApplication1\obj\Debug\net8.0\WebApplication1.genruntimeconfig.cache
 C:\Users\PC\source\repos\WebApplication1\obj\Debug\net8.0\ref\WebApplication1.dll
 C:\Users\PC\source\repos\WebApplication1\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\PC\source\repos\WebApplication1\bin\Debug\net8.0\FluentValidation.dll
+C:\Users\PC\source\repos\WebApplication1\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
+C:\Users\PC\source\repos\WebApplication1\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
