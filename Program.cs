@@ -8,6 +8,7 @@ using WebApplication1.Infrastructure.Data;
 using WebApplication1.Infrastructure.Repositories;
 using WebApplication1.Infrastructure.Middlewares;
 using WebApplication1.Domain.Interfaces.Repositories;
+using WebApplication1._3._Application.Interfaces.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 
 // Đăng ký GenreService và các dịch vụ khác
+builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IGenreService,GenreService>();
 builder.Services.AddScoped<IMovieGenreService,MovieGenreService>();
 builder.Services.AddScoped<IMovieService,MovieService>();
