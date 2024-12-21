@@ -7,7 +7,7 @@
         public required int RoomID { get; set; }
         public required DateTime Time { get; set; }
 
-        public string? MovieTitle { get; set; }
+        //public string? MovieTitle { get; set; }
 
         public ICollection<TicketDTO>? Tickets { get; set; }
     }
