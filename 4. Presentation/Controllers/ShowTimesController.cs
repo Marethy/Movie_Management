@@ -29,7 +29,7 @@ namespace WebApplication1.Presentation.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             await _showtimeService.AddShowTimeAsync(showtimeDto);
-            return CreatedAtAction(nameof(GetShowTimeByIdAsync), new { id = showtimeDto.ShowTimeID }, showtimeDto);
+            return NoContent();
         }
 
         [HttpPut("{id}")]

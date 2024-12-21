@@ -31,7 +31,7 @@ namespace WebApplication1.Presentation.Controllers
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             await _movieService.AddMovieAsync(movieDto);
-            return CreatedAtAction(nameof(GetMovieByIdAsync), new {id=movieDto.MovieId},movieDto);
+            return NoContent();
         }
 
         [HttpPut("{id}")]

@@ -29,7 +29,7 @@ namespace WebApplication1.Presentation.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             await _ProductService.AddProductAsync(productDto);
-            return CreatedAtAction(nameof(GetProductByIdAsync), new { id = productDto.ProductID }, productDto);
+            return NoContent();
         }
 
         [HttpPut("{id}")]

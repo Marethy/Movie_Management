@@ -35,7 +35,7 @@ namespace WebApplication1.Presentation.Controllers
             await _roomService.AddRoomAsync(roomDto);
             // Tự động tạo ghế cho phòng dựa trên capacity
             await _seatService.GenerateSeatsForRoomAsync(roomDto.RoomID, roomDto.Capacity);
-            return CreatedAtAction(nameof(GetRoomByIdAsync), new { id = roomDto.RoomID }, roomDto);
+            return NoContent();
         }
 
         [HttpPut("{id}")]

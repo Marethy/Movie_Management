@@ -32,7 +32,7 @@ namespace WebApplication1.Presentation.Controllers
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             await _genreService.AddGenreAsync(genreDto);
-            return CreatedAtAction(nameof(GetGenreByIdAsync), new { id = genreDto.GenreId }, genreDto);
+            return NoContent();
         }
 
         [HttpPut("{id}")]

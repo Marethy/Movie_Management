@@ -8,7 +8,7 @@
         public required int TheaterID { get; set; }
         public required Theater Theater { get; set; }
 
-        public required ICollection<Seat> Seats { get; set; }
+        public ICollection<Seat>? Seats { get; set; }
         public ICollection<ShowTime>? ShowTimes { get; set; }
     }
 }

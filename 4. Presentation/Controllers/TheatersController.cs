@@ -28,7 +28,7 @@ namespace WebApplication1.Presentation.Controllers
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             await _theaterService.AddTheaterAsync(theaterDto);
-            return CreatedAtAction(nameof(GetTheaterByIdAsync), new { id = theaterDto.TheaterID }, theaterDto);
+            return NoContent();
         }
 
         [HttpPut("{id}")]
