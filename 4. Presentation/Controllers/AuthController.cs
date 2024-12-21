@@ -19,6 +19,10 @@ public class AuthController(IAuthService authService) : ControllerBase
     [HttpPost("login")]
     public async Task<IActionResult> LoginAsync([FromBody] LoginDTO loginDto)
     {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
         var token = await _authService.LoginAsync(loginDto);
         return Ok(new { Token = token });
     }

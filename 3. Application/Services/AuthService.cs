@@ -16,7 +16,8 @@ public class AuthService(UserManager<User> _userManager, SignInManager<User> _si
         {
             UserName = registerDto.UserName,
             Email = registerDto.Email,
-            FullName = registerDto.FullName // Gán giá trị FullName
+            FullName = registerDto.FullName, // Gán giá trị FullName
+            PhoneNumber = registerDto.PhoneNumber,
         };
 
         var result = await _userManager.CreateAsync(user, registerDto.Password);
